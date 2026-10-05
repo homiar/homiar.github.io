@@ -42,26 +42,27 @@
 
   /* Top bar with the name and page menu */
   .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
-  .topbar-in { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; padding-block: 0.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 2rem; }
+  .topbar-in { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; padding-block: 0.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 2rem; }
   .brand { font: 500 1.35rem/1 var(--display); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
   #tabs { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-left: auto; }
   #tabs a { font: 500 0.875rem/1 var(--body); color: var(--muted); text-decoration: none; padding-block: 0.45rem; border-bottom: 2px solid transparent; }
   #tabs a:hover { color: var(--ink); }
   #tabs a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
 
-  .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; padding-block: 3rem 4rem; display: grid; gap: 3rem; }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; padding-block: 3rem 4rem; display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem 3.5rem; }
   .tabs main > section[data-hidden] { display: none; }
 
-  /* About page header: photo beside name, intro and links */
-  .hero { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.75rem 2.25rem; align-items: start; }
-  .hero h1 { margin: 0 0 0.75rem; font: 500 clamp(2.4rem, 5vw, 3.2rem)/1 var(--display); letter-spacing: -0.02em; }
-  .hero-text { display: grid; gap: 1.1rem; min-width: 0; }
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
-  .profiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.9375rem; }
+  /* Profile column: photo, name, roles and links, shown beside every page */
+  .profile { position: sticky; top: 6rem; align-self: start; display: grid; gap: 1.1rem; align-content: start; }
+  .profile h1 { margin: 0 0 0.5rem; font: 600 1.4rem/1.2 var(--display); letter-spacing: -0.01em; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; font-size: 0.875rem; color: var(--muted); line-height: 1.45; }
+  .profiles { list-style: none; margin: 0; padding: 1rem 0 0; border-top: 1px solid var(--line); display: grid; gap: 0.45rem; font-size: 0.9375rem; }
   .profiles a { text-decoration: none; }
   .profiles a:hover { text-decoration: underline; }
-  .monogram { width: 9rem; aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; position: relative; overflow: hidden; font: 500 2.2rem/1 var(--display); }
+  .monogram { width: 10rem; aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; position: relative; overflow: hidden; font: 500 2.2rem/1 var(--display); }
   .monogram img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .bio { display: grid; gap: 1rem; }
+  .bio p { margin: 0; }
 
   /* Reading column */
   main { display: grid; gap: 4rem; min-width: 0; align-content: start; }
@@ -104,7 +105,7 @@
   .art-logo { background: #182734; }
   .art-logo .logo { width: 11rem; max-width: 100%; height: auto; display: block; }
   .credit { font-size: 0.75rem !important; }
-  @media (min-width: 860px) {
+  @media (min-width: 1100px) {
     .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .card.wide { grid-column: span 2; }
   }
@@ -140,11 +141,16 @@
 
   footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 1.5rem; font: 400 0.8125rem/1.5 var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
 
+  @media (max-width: 860px) {
+    .wrap { grid-template-columns: minmax(0, 1fr); }
+    .profile { position: static; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1rem 1.25rem; }
+    .profile .profiles { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+    .monogram { width: 7.5rem; }
+  }
   @media (max-width: 640px) {
     .wrap { padding-block: 2rem 3rem; }
     #tabs { margin-left: 0; gap: 0.1rem 1rem; }
-    .hero { grid-template-columns: minmax(0, 1fr); }
-    .monogram { width: 6.5rem; font-size: 1.6rem; }
+    .monogram { width: 6rem; font-size: 1.6rem; }
   }
   @media (max-width: 520px) {
     .entry, .plain li { grid-template-columns: minmax(0, 1fr); }
@@ -170,25 +176,32 @@
 </header>
 
 <div class="wrap">
+  <aside class="profile" aria-label="Profile">
+    <div class="monogram"><span aria-hidden="true">AH</span><img src="headshot.jpg" alt="Ava Homiar" onerror="this.remove()"></div>
+    <div class="who">
+      <h1>Ava Homiar</h1>
+      <ul class="facts">
+        <li>Researcher, Clinical Informatics, Beth Israel Deaconess Medical Center</li>
+        <li>MMSc student, Biomedical Informatics, Harvard Medical School</li>
+        <li>Boston, MA</li>
+      </ul>
+    </div>
+    <ul class="profiles">
+      <li><a href="#contact">Email</a></li>
+      <li><a href="https://scholar.google.com/citations?user=1wyKlKQAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://orcid.org/0000-0001-5772-2475">ORCID</a></li>
+      <li><a href="https://www.linkedin.com/in/avahomiar">LinkedIn</a></li>
+      <li><a href="https://x.com/avahomiar">X (@avahomiar)</a></li>
+    </ul>
+  </aside>
   <main>
     <section id="about">
-      <div class="hero">
-        <div class="monogram"><span aria-hidden="true">AH</span><img src="headshot.jpg" alt="Ava Homiar" onerror="this.remove()"></div>
-        <div class="hero-text">
-          <div>
-            <h1>Ava Homiar</h1>
-            <p class="lede">I study how AI and digital health tools can make healthcare clearer and safer for patients and clinicians.</p>
-          </div>
-          <div class="actions">
-            <ul class="profiles">
-              <li><a href="#contact">Email</a></li>
-              <li><a href="https://scholar.google.com/citations?user=1wyKlKQAAAAJ&amp;hl=en">Google Scholar</a></li>
-              <li><a href="https://orcid.org/0000-0001-5772-2475">ORCID</a></li>
-              <li><a href="https://www.linkedin.com/in/avahomiar">LinkedIn</a></li>
-              <li><a href="https://x.com/avahomiar">X (@avahomiar)</a></li>
-            </ul>
-          </div>
-        </div>
+      <h2>About</h2>
+      <p class="lede">I study how AI and digital health tools can make healthcare clearer and safer for patients and clinicians.</p>
+      <div class="bio">
+        <p>I'm a researcher in the Division of Clinical Informatics and the Department of General Medicine at Beth Israel Deaconess Medical Center and Harvard Medical School. I'm also a Master of Medical Science (MMSc) student in Biomedical Informatics at the Blavatnik Institute of Biomedical Informatics at Harvard Medical School. My work focuses on developing and evaluating AI-driven digital health tools to support patient engagement, health communication, and clinical decision-making. I contribute to multi-site studies involving chatbots, wearable technologies, and real-world implementation of digital interventions.</p>
+        <p>Previously, I conducted research at the University of Oxford, where I led the design and validation of large language model prompts to automate evidence synthesis in living systematic reviews. I have also held research roles at the Centre for Addiction and Mental Health, St. Joseph’s Healthcare Hamilton, and St. Michael’s Hospital, contributing to projects in neuroscience, psychiatry, and health informatics.</p>
+        <p>I hold an Honours Bachelor of Science in Life Sciences from McMaster University. I have completed advanced training in artificial intelligence, machine learning, and the ethics of emerging technologies through programs at the University of Oxford and the London School of Economics, with additional coursework in neuroscience, cognition, and data science.</p>
       </div>
       <p class="label">Research interests</p>
       <ul class="interests">
