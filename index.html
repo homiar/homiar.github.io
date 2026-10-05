@@ -66,7 +66,7 @@
 
   /* Reading column */
   main { display: grid; gap: 4rem; min-width: 0; align-content: start; }
-  section { display: grid; gap: 1.25rem; scroll-margin-top: 2rem; }
+  section { display: grid; gap: 1.25rem; scroll-margin-top: 6rem; }
   h2 {
     margin: 0; font: 500 1.6rem/1.2 var(--display); letter-spacing: -0.01em;
     display: flex; align-items: baseline; gap: 1rem;
@@ -87,6 +87,19 @@
   .entry p, .entry ul { grid-column: 2; font-size: 0.9375rem; }
   .entry ul { margin: 0.25rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.25rem; }
   .entry b { font-weight: 600; }
+
+  /* Project cards with illustrations */
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16.5rem), 1fr)); gap: 1.25rem; }
+  .card { display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--bg); min-width: 0; }
+  .art { background: var(--surface); border-bottom: 1px solid var(--line); padding: 1.25rem 1rem; display: grid; place-items: center; }
+  .art svg { width: 100%; max-width: 13rem; height: auto; display: block; }
+  .card-body { padding: 1rem 1.1rem 1.2rem; display: grid; gap: 0.3rem; align-content: start; }
+  .card h3 { margin: 0; font: 600 1rem/1.4 var(--body); }
+  .card p { margin: 0; font-size: 0.875rem; color: var(--muted); }
+  @media (min-width: 860px) {
+    .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card.wide { grid-column: span 2; }
+  }
 
   /* Publications */
   .pubs { margin: 0; padding: 0; list-style: none; display: grid; gap: 1.4rem; counter-reset: pub; }
@@ -214,34 +227,76 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <ul class="entries">
-        <li class="entry">
-          <span class="when">2025 – present</span>
-          <h3>AMIE: a research AI system for diagnostic medical reasoning and conversations <span class="where">Beth Israel Deaconess Medical Center, with Google Research</span></h3>
+      <ul class="cards">
+        <li class="card wide">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="22" y="18" width="70" height="40" rx="10" fill="var(--accent)"/><path d="M36 58 l0 14 l14 -14z" fill="var(--accent)"/>
+<rect x="68" y="44" width="70" height="36" rx="10" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><path d="M122 80 l0 12 l-12 -12z" fill="var(--bg)" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
+<path d="M57 28 v20 M47 38 h20" stroke="var(--bg)" stroke-width="5" stroke-linecap="round"/>
+<circle cx="88" cy="62" r="3.5" fill="var(--accent)"/><circle cx="103" cy="62" r="3.5" fill="var(--accent)"/><circle cx="118" cy="62" r="3.5" fill="var(--accent)"/></svg></div>
+          <div class="card-body">
+            <span class="when">2025 – present</span>
+            <h3>AMIE: a research AI system for diagnostic medical reasoning and conversations</h3>
+            <p>Beth Israel Deaconess Medical Center, with Google Research</p>
+          </div>
         </li>
-        <li class="entry">
-          <span class="when">2024 – present</span>
-          <h3>EMPATHICA: a chatbot for enhancing medication literacy <span class="where">Beth Israel Deaconess Medical Center and Dana-Farber Cancer Institute</span></h3>
+        <li class="card">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><g transform="rotate(-30 58 54)"><rect x="24" y="40" width="68" height="28" rx="14" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><path d="M58 40 h20 a14 14 0 0 1 0 28 h-20z" fill="var(--accent)"/></g>
+<rect x="88" y="16" width="52" height="32" rx="9" fill="var(--accent)"/><path d="M100 48 l0 11 l11 -11z" fill="var(--accent)"/>
+<path d="M98 27 h32 M98 37 h22" stroke="var(--bg)" stroke-width="4" stroke-linecap="round"/></svg></div>
+          <div class="card-body">
+            <span class="when">2024 – present</span>
+            <h3>EMPATHICA: a chatbot for enhancing medication literacy</h3>
+            <p>Beth Israel Deaconess Medical Center and Dana-Farber Cancer Institute</p>
+          </div>
         </li>
-        <li class="entry">
-          <span class="when">2025 – present</span>
-          <h3>Remote patient monitoring for people with cancer <span class="where">Evaluation of the Vitalera platform, Beth Israel Deaconess Medical Center</span></h3>
+        <li class="card">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="52" y="10" width="56" height="82" rx="10" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><rect x="70" y="16" width="20" height="3" rx="1.5" fill="var(--line)"/>
+<path d="M14 54 h44 l8 -20 l10 38 l9 -28 l6 10 h55" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+          <div class="card-body">
+            <span class="when">2025 – present</span>
+            <h3>Remote patient monitoring for people with cancer</h3>
+            <p>Evaluation of the Vitalera platform, Beth Israel Deaconess Medical Center</p>
+          </div>
         </li>
-        <li class="entry">
-          <span class="when">2025 – present</span>
-          <h3>Telehealth programs for traumatic brain injury <span class="where">Beth Israel Deaconess Medical Center, with Veterans Affairs</span></h3>
+        <li class="card">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="26" y="14" width="108" height="64" rx="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><rect x="68" y="78" width="24" height="10" fill="var(--accent)"/><rect x="54" y="88" width="52" height="4" rx="2" fill="var(--accent)"/>
+<circle cx="80" cy="38" r="11" fill="var(--accent)"/><path d="M58 72 a22 18 0 0 1 44 0z" fill="var(--accent)"/>
+<circle cx="122" cy="24" r="4" fill="var(--accent)"/></svg></div>
+          <div class="card-body">
+            <span class="when">2025 – present</span>
+            <h3>Telehealth programs for traumatic brain injury</h3>
+            <p>Beth Israel Deaconess Medical Center, with Veterans Affairs</p>
+          </div>
         </li>
-        <li class="entry">
-          <span class="when">2024 – 2025</span>
-          <h3>Large language models for living systematic reviews <span class="where">Prompt engineering for screening and risk of bias, GALENOS, University of Oxford</span></h3>
+        <li class="card">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="18" y="22" width="40" height="52" rx="5" fill="var(--bg)" stroke="var(--line)" stroke-width="3"/><rect x="26" y="16" width="40" height="52" rx="5" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/>
+<path d="M34 30 h24 M34 40 h24 M34 50 h16" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+<path d="M78 26 h34 l-12 18 v18 l-10 6 v-24z" fill="var(--accent)"/>
+<circle cx="130" cy="62" r="14" fill="var(--accent)"/><path d="M123 62 l5 5 l9 -10" fill="none" stroke="var(--bg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="card-body">
+            <span class="when">2024 – 2025</span>
+            <h3>Large language models for living systematic reviews</h3>
+            <p>Prompt engineering for screening and risk of bias, GALENOS, University of Oxford</p>
+          </div>
         </li>
-        <li class="entry">
-          <span class="when">2024 – 2025</span>
-          <h3>GALENOS living evidence on anxiety, depression and psychosis <span class="where">Oxford Precision Psychiatry Lab, University of Oxford</span></h3>
+        <li class="card wide">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><g stroke="var(--accent)" stroke-width="2.5"><line x1="40" y1="30" x2="80" y2="50"/><line x1="80" y1="50" x2="122" y2="26"/><line x1="80" y1="50" x2="58" y2="80"/><line x1="80" y1="50" x2="118" y2="76"/><line x1="40" y1="30" x2="58" y2="80"/><line x1="122" y1="26" x2="118" y2="76"/></g>
+<circle cx="80" cy="50" r="12" fill="var(--accent)"/><circle cx="40" cy="30" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><circle cx="122" cy="26" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><circle cx="58" cy="80" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><circle cx="118" cy="76" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/></svg></div>
+          <div class="card-body">
+            <span class="when">2024 – 2025</span>
+            <h3>GALENOS living evidence on anxiety, depression and psychosis</h3>
+            <p>Oxford Precision Psychiatry Lab, University of Oxford</p>
+          </div>
         </li>
-        <li class="entry">
-          <span class="when">2022 – 2023</span>
-          <h3>Digital technology use in people with schizophrenia <span class="where">St. Joseph's Healthcare Hamilton</span></h3>
+        <li class="card">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="64" y="6" width="32" height="16" rx="4" fill="var(--line)"/><rect x="64" y="78" width="32" height="16" rx="4" fill="var(--line)"/>
+<rect x="56" y="20" width="48" height="60" rx="12" fill="var(--accent)"/>
+<path d="M64 52 h9 l4 -10 l6 18 l4 -8 h9" fill="none" stroke="var(--bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="card-body">
+            <span class="when">2022 – 2023</span>
+            <h3>Digital technology use in people with schizophrenia</h3>
+            <p>St. Joseph's Healthcare Hamilton</p>
+          </div>
         </li>
       </ul>
     </section>
