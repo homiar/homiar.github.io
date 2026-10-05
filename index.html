@@ -11,12 +11,12 @@
 <style>
   /* Layout: sticky identity column (name, position, profile links) on the left; CV-style reading column on the right; stacks on phones. */
   :root {
-    --bg: #eef2ef;
-    --surface: #e2e8e4;
-    --ink: #15201b;
-    --muted: #55645d;
-    --line: #c6d1cb;
-    --accent: #2b4bd8;
+    --bg: #ffffff;
+    --surface: #f0f3f8;
+    --ink: #0f1b2d;
+    --muted: #56637a;
+    --line: #d6dde8;
+    --accent: #1d3f72;
     --accent-ink: #ffffff;
     --ok: #1f7a4d;
     --wait: #8a5a00;
@@ -24,18 +24,8 @@
     --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #101613; --surface: #19211d; --ink: #e4ece7; --muted: #95a59d;
-      --line: #2b3631; --accent: #9aaeff; --accent-ink: #0d1330;
-      --ok: #6fd3a0; --wait: #e8b956; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #101613; --surface: #19211d; --ink: #e4ece7; --muted: #95a59d;
-    --line: #2b3631; --accent: #9aaeff; --accent-ink: #0d1330;
-    --ok: #6fd3a0; --wait: #e8b956; color-scheme: dark;
-  }
+  /* One fixed light theme: navy on white, whatever the visitor's system setting. */
+  :root { color-scheme: light; }
 
   * { box-sizing: border-box; }
   body {
@@ -49,47 +39,33 @@
   a:hover { text-decoration-thickness: 2px; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
-  .wrap {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 0 1.25rem;
-    padding-block: 3.5rem 4rem;
-    display: grid;
-    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
-    gap: 4.5rem;
-  }
+  /* Top bar with the name and page menu */
+  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .topbar-in { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; padding-block: 0.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 2rem; }
+  .brand { font: 500 1.35rem/1 var(--display); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  #tabs { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-left: auto; }
+  #tabs a { font: 500 0.875rem/1 var(--body); color: var(--muted); text-decoration: none; padding-block: 0.45rem; border-bottom: 2px solid transparent; }
+  #tabs a:hover { color: var(--ink); }
+  #tabs a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
 
-  /* Identity column */
-  .id { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 3.5rem); align-self: start; display: grid; gap: 1.5rem; }
-  .monogram {
-    width: 7rem; aspect-ratio: 1; max-width: 100%; border-radius: 50%;
-    background: var(--accent); color: var(--accent-ink);
-    display: grid; place-items: center; position: relative; overflow: hidden;
-    font: 500 1.9rem/1 var(--display); letter-spacing: 0.02em;
-  }
-  .monogram img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .id h1 { margin: 0; font: 500 clamp(2.4rem, 5vw, 3.1rem)/1 var(--display); letter-spacing: -0.02em; text-wrap: balance; }
-  .position { margin: 0; font-size: 0.95rem; line-height: 1.5; display: grid; gap: 0.6rem; }
-  .position span { display: block; color: var(--muted); }
-  .profiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font-size: 0.9375rem; }
+  .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; padding-block: 3rem 4rem; display: grid; gap: 3rem; }
+  .tabs main > section[data-hidden] { display: none; }
+
+  /* About page header: photo beside name, intro and links */
+  .hero { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.75rem 2.25rem; align-items: start; }
+  .hero h1 { margin: 0 0 0.75rem; font: 500 clamp(2.4rem, 5vw, 3.2rem)/1 var(--display); letter-spacing: -0.02em; }
+  .hero-text { display: grid; gap: 1.1rem; min-width: 0; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+  .profiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.9375rem; }
   .profiles a { text-decoration: none; }
   .profiles a:hover { text-decoration: underline; }
-  .cv-btn {
-    justify-self: start; display: inline-block; text-decoration: none;
-    font: 500 0.875rem/1 var(--body); background: var(--accent); color: var(--accent-ink);
-    border-radius: 6px; padding: 0.8rem 1.1rem;
-  }
-  .cv-btn:hover { filter: brightness(1.08); }
-  .id nav { display: grid; gap: 0.55rem; font: 500 0.75rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; padding-block: 1.1rem; border-block: 1px solid var(--line); }
-  .id nav a { color: var(--muted); text-decoration: none; }
-  .id nav a:hover { color: var(--ink); }
-  .id nav a[aria-current="page"] { color: var(--accent); }
-  .id nav a[aria-current="page"]::before { content: "→ "; }
-  .tabs main > section[data-hidden] { display: none; }
-  .tabs main { gap: 0; align-content: start; }
+  .cv-btn { display: inline-block; text-decoration: none; font: 500 0.875rem/1 var(--body); background: var(--accent); color: var(--accent-ink); border-radius: 6px; padding: 0.8rem 1.1rem; }
+  .cv-btn:hover { filter: brightness(1.15); }
+  .monogram { width: 9rem; aspect-ratio: 1; max-width: 100%; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; position: relative; overflow: hidden; font: 500 2.2rem/1 var(--display); }
+  .monogram img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
   /* Reading column */
-  main { display: grid; gap: 4rem; min-width: 0; }
+  main { display: grid; gap: 4rem; min-width: 0; align-content: start; }
   section { display: grid; gap: 1.25rem; scroll-margin-top: 2rem; }
   h2 {
     margin: 0; font: 500 1.6rem/1.2 var(--display); letter-spacing: -0.01em;
@@ -97,7 +73,7 @@
   }
   h2::after { content: ""; flex: 1; border-bottom: 1px solid var(--line); transform: translateY(-0.3em); }
   p { margin: 0; max-width: 66ch; }
-  .lede { font: 400 1.4rem/1.45 var(--display); max-width: 38ch; text-wrap: pretty; }
+  .lede { font: 400 1.25rem/1.5 var(--display); max-width: 48ch; text-wrap: pretty; }
   .label { margin: 0; font: 500 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
   .interests { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
   .interests li { font-size: 0.875rem; padding: 0.35rem 0.75rem; border: 1px solid var(--line); border-radius: 999px; }
@@ -143,11 +119,11 @@
 
   footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 1.5rem; font: 400 0.8125rem/1.5 var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
 
-  @media (max-width: 800px) {
-    .wrap { grid-template-columns: minmax(0, 1fr); gap: 3rem; padding-block: 2.5rem 3rem; }
-    .id { position: static; }
-    .id nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem; }
-    .monogram { width: 4rem; font-size: 1.5rem; }
+  @media (max-width: 640px) {
+    .wrap { padding-block: 2rem 3rem; }
+    #tabs { margin-left: 0; gap: 0.1rem 1rem; }
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .monogram { width: 6.5rem; font-size: 1.6rem; }
   }
   @media (max-width: 520px) {
     .entry, .plain li { grid-template-columns: minmax(0, 1fr); }
@@ -158,41 +134,44 @@
 </head>
 <body>
 
-<div class="wrap">
-  <aside class="id">
-    <div class="monogram"><span aria-hidden="true">AH</span><img src="headshot.jpg" alt="Ava Homiar" onerror="this.remove()"></div>
-    <div class="position">
-      <h1>Ava Homiar</h1>
-      <p style="margin:0">Research Coordinator, Division of Clinical Informatics<span>Beth Israel Deaconess Medical Center, Harvard Medical School</span></p>
-      <p style="margin:0">MMSc candidate, Biomedical Informatics<span>Harvard Medical School · Boston</span></p>
-    </div>
-    <nav aria-label="Sections" id="tabs">
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#about">Ava Homiar</a>
+    <nav aria-label="Pages" id="tabs">
       <a href="#about">About</a>
-      <a href="#education">Education</a>
       <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
       <a href="#projects">Projects</a>
       <a href="#preprints">Preprints</a>
       <a href="#publications">Publications</a>
       <a href="#talks">Talks</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="cv-btn" href="cv.pdf">Download CV (PDF)</a>
-    <ul class="profiles">
-      <li><a href="#contact">Email</a></li>
-      <li><a href="https://scholar.google.com/citations?user=1wyKlKQAAAAJ&amp;hl=en">Google Scholar</a></li>
-      <li><a href="https://orcid.org/0000-0001-5772-2475">ORCID</a></li>
-      <li><a href="https://www.linkedin.com/in/avahomiar">LinkedIn</a></li>
-      <li><a href="https://x.com/avahomiar">X (@avahomiar)</a></li>
-    </ul>
-  </aside>
+  </div>
+</header>
 
+<div class="wrap">
   <main>
     <section id="about">
-      <h2>About</h2>
-      <p class="lede">I'm a researcher in the Division of Clinical Informatics and General Medicine Department at Beth Israel Deaconess Medical Center and Harvard Medical School.</p>
-      <p>I'm also an incoming Master of Medical Science (MMSc) student in Biomedical Informatics at the Blavatnik Institute of Biomedical Informatics at Harvard Medical School. My work focuses on developing and evaluating AI-driven digital health tools to support patient engagement, health communication, and clinical decision-making. I contribute to multi-site studies involving chatbots, wearable technologies, and real-world implementation of digital interventions.</p>
-      <p>Previously, I conducted research at the University of Oxford, where I led the design and validation of large language model prompts to automate evidence synthesis in living systematic reviews. I have also held research roles at the Center for Addiction and Mental Health, St. Joseph’s Healthcare Hamilton, and St. Michael’s Hospital, contributing to projects in neuroscience, psychiatry, and health informatics.</p>
-      <p>I hold an Honors Bachelor of Science in Life Sciences from McMaster University. I have completed advanced training in artificial intelligence, machine learning, and the ethics of emerging technologies through programs at the University of Oxford and the London School of Economics, with additional coursework in neuroscience, cognition, and data science.</p>
+      <div class="hero">
+        <div class="monogram"><span aria-hidden="true">AH</span><img src="headshot.jpg" alt="Ava Homiar" onerror="this.remove()"></div>
+        <div class="hero-text">
+          <div>
+            <h1>Ava Homiar</h1>
+            <p class="lede">I'm a researcher in the Division of Clinical Informatics at Beth Israel Deaconess Medical Center and Harvard Medical School, and an incoming MMSc student in Biomedical Informatics at Harvard. I develop and evaluate AI-driven digital health tools for patient engagement, health communication and clinical decision-making.</p>
+          </div>
+          <div class="actions">
+            <a class="cv-btn" href="cv.pdf">Download CV (PDF)</a>
+            <ul class="profiles">
+              <li><a href="#contact">Email</a></li>
+              <li><a href="https://scholar.google.com/citations?user=1wyKlKQAAAAJ&amp;hl=en">Google Scholar</a></li>
+              <li><a href="https://orcid.org/0000-0001-5772-2475">ORCID</a></li>
+              <li><a href="https://www.linkedin.com/in/avahomiar">LinkedIn</a></li>
+              <li><a href="https://x.com/avahomiar">X (@avahomiar)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <p class="label">Research interests</p>
       <ul class="interests">
         <li>Clinical informatics</li>
@@ -202,20 +181,6 @@
         <li>Health literacy</li>
         <li>Wearables and real-world data</li>
         <li>AI policy and governance</li>
-      </ul>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <ul class="entries">
-        <li class="entry">
-          <span class="when">2026 – 2028</span>
-          <h3>Master of Medical Science (MMSc), Biomedical Informatics <span class="where">Harvard Medical School, Boston</span></h3>
-        </li>
-        <li class="entry">
-          <span class="when">2019 – 2023</span>
-          <h3>Honours B.Sc., Life Science <span class="where">McMaster University, Hamilton, Canada</span></h3>
-        </li>
       </ul>
     </section>
 
@@ -229,6 +194,20 @@
         <li class="entry">
           <span class="when">2025 – present</span>
           <h3>Research Assistant II <span class="where">Division of Clinical Informatics, BIDMC and Harvard Medical Faculty Physicians</span></h3>
+        </li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="entries">
+        <li class="entry">
+          <span class="when">2026 – 2028</span>
+          <h3>Master of Medical Science (MMSc), Biomedical Informatics <span class="where">Harvard Medical School, Boston</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2019 – 2023</span>
+          <h3>Honours B.Sc., Life Science <span class="where">McMaster University, Hamilton, Canada</span></h3>
         </li>
       </ul>
     </section>
@@ -352,22 +331,27 @@
 
 <script>
   (function () {
-    var root = document.documentElement;
     var sections = Array.prototype.slice.call(document.querySelectorAll("main > section"));
     var links = Array.prototype.slice.call(document.querySelectorAll("#tabs a"));
     var ids = sections.map(function (s) { return s.id; });
-    function show() {
-      var id = (location.hash || "").slice(1);
+    function show(id, scroll) {
       if (ids.indexOf(id) < 0) id = "about";
       sections.forEach(function (s) { if (s.id === id) s.removeAttribute("data-hidden"); else s.setAttribute("data-hidden", ""); });
       links.forEach(function (a) { if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      if (scroll) window.scrollTo(0, 0);
     }
-    root.classList.add("tabs");
-    window.addEventListener("hashchange", function () { show(); window.scrollTo(0, 0); });
+    document.documentElement.classList.add("tabs");
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener("click", function () { if (location.hash === a.getAttribute("href")) show(); });
+      a.addEventListener("click", function (e) {
+        var id = a.getAttribute("href").slice(1);
+        if (ids.indexOf(id) < 0) return;
+        e.preventDefault();
+        show(id, true);
+        try { history.replaceState(null, "", "#" + id); } catch (err) {}
+      });
     });
-    show();
+    window.addEventListener("hashchange", function () { show(location.hash.slice(1), true); });
+    show((location.hash || "").slice(1), false);
   })();
 </script>
 <script>
