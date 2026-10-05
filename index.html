@@ -62,11 +62,12 @@
   /* Identity column */
   .id { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 3.5rem); align-self: start; display: grid; gap: 1.5rem; }
   .monogram {
-    width: 5rem; aspect-ratio: 1; max-width: 100%; border-radius: 50%;
+    width: 7rem; aspect-ratio: 1; max-width: 100%; border-radius: 50%;
     background: var(--accent); color: var(--accent-ink);
-    display: grid; place-items: center;
+    display: grid; place-items: center; position: relative; overflow: hidden;
     font: 500 1.9rem/1 var(--display); letter-spacing: 0.02em;
   }
+  .monogram img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .id h1 { margin: 0; font: 500 clamp(2.4rem, 5vw, 3.1rem)/1 var(--display); letter-spacing: -0.02em; text-wrap: balance; }
   .position { margin: 0; font-size: 0.95rem; line-height: 1.5; display: grid; gap: 0.6rem; }
   .position span { display: block; color: var(--muted); }
@@ -154,7 +155,7 @@
 
 <div class="wrap">
   <aside class="id">
-    <div class="monogram" aria-hidden="true">AH</div>
+    <div class="monogram"><span aria-hidden="true">AH</span><img src="headshot.jpg" alt="Ava Homiar" onerror="this.remove()"></div>
     <div class="position">
       <h1>Ava Homiar</h1>
       <p style="margin:0">Research Coordinator, Division of Clinical Informatics<span>Beth Israel Deaconess Medical Center, Harvard Medical School</span></p>
@@ -169,9 +170,9 @@
     </ul>
     <nav aria-label="Sections">
       <a href="#about">About</a>
-      <a href="#milestones">Milestones</a>
       <a href="#education">Education</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#preprints">Preprints</a>
       <a href="#publications">Publications</a>
       <a href="#talks">Talks</a>
@@ -194,21 +195,6 @@
         <li>Health literacy</li>
         <li>Wearables and real-world data</li>
         <li>AI policy and governance</li>
-      </ul>
-    </section>
-
-    <section id="milestones">
-      <h2>Milestones</h2>
-      <ul class="plain">
-        <li><span class="when">2026</span><span>Started the MMSc in Biomedical Informatics at Harvard Medical School.</span></li>
-        <li><span class="when">2026</span><span>Our prospective clinical feasibility study of AMIE, a conversational diagnostic AI, was posted on arXiv.</span></li>
-        <li><span class="when">2026</span><span>Our paper on detecting trends in mental health publications was accepted in <i>BMJ Mental Health</i>.</span></li>
-        <li><span class="when">Nov 2025</span><span>Presented EMPATHICA at the AMIA Annual Symposium in Atlanta, and a poster at the BIDMC Cancer Research Center Symposium.</span></li>
-        <li><span class="when">Oct 2025</span><span>Gave a guest lecture on AI and health literacy at the Harvard T.H. Chan School of Public Health.</span></li>
-        <li><span class="when">2025</span><span>Published my first-author paper on LLM prompts for screening studies in a living systematic review in <i>BMJ Mental Health</i>.</span></li>
-        <li><span class="when">Mar 2025</span><span>Joined the Department of Medicine at Beth Israel Deaconess Medical Center as Research Coordinator for the AMIE study.</span></li>
-        <li><span class="when">Jan 2025</span><span>Joined the Division of Clinical Informatics at Beth Israel Deaconess Medical Center.</span></li>
-        <li><span class="when">2023</span><span>Graduated with an Honours B.Sc. in Life Science from McMaster University.</span></li>
       </ul>
     </section>
 
@@ -236,6 +222,40 @@
         <li class="entry">
           <span class="when">2025 – present</span>
           <h3>Research Assistant II <span class="where">Division of Clinical Informatics, BIDMC and Harvard Medical Faculty Physicians</span></h3>
+        </li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul class="entries">
+        <li class="entry">
+          <span class="when">2025 – present</span>
+          <h3>AMIE: a research AI system for diagnostic medical reasoning and conversations <span class="where">Beth Israel Deaconess Medical Center, with Google Research</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2024 – present</span>
+          <h3>EMPATHICA: a chatbot for enhancing medication literacy <span class="where">Beth Israel Deaconess Medical Center and Dana-Farber Cancer Institute</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2025 – present</span>
+          <h3>Remote patient monitoring for people with cancer <span class="where">Evaluation of the Vitalera platform, Beth Israel Deaconess Medical Center</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2025 – present</span>
+          <h3>Telehealth programs for traumatic brain injury <span class="where">Beth Israel Deaconess Medical Center, with Veterans Affairs</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2024 – 2025</span>
+          <h3>Large language models for living systematic reviews <span class="where">Prompt engineering for screening and risk of bias, GALENOS, University of Oxford</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2024 – 2025</span>
+          <h3>GALENOS living evidence on anxiety, depression and psychosis <span class="where">Oxford Precision Psychiatry Lab, University of Oxford</span></h3>
+        </li>
+        <li class="entry">
+          <span class="when">2022 – 2023</span>
+          <h3>Digital technology use in people with schizophrenia <span class="where">St. Joseph's Healthcare Hamilton</span></h3>
         </li>
       </ul>
     </section>
