@@ -7,7 +7,7 @@
 <meta name="description" content="Ava Homiar: clinical informatics researcher at Beth Israel Deaconess Medical Center and MMSc candidate in Biomedical Informatics at Harvard Medical School.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
   /* Layout: sticky identity column (name, position, profile links) on the left; CV-style reading column on the right; stacks on phones. */
   :root {
@@ -20,9 +20,10 @@
     --accent-ink: #0b1830;
     --ok: #6fd3a0;
     --wait: #e8b956;
-    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
     --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    /* One typeface everywhere: headings and labels use the body font too. */
+    --display: var(--body);
+    --mono: var(--body);
   }
   /* One fixed dark navy theme, whatever the visitor's system setting. */
   :root { color-scheme: dark; }
