@@ -96,6 +96,12 @@
   .card-body { padding: 1rem 1.1rem 1.2rem; display: grid; gap: 0.3rem; align-content: start; }
   .card h3 { margin: 0; font: 600 1rem/1.4 var(--body); }
   .card p { margin: 0; font-size: 0.875rem; color: var(--muted); }
+  .art-fig { background: #ffffff; padding: 0.75rem; }
+  .art-fig .fig { width: 100%; max-height: 15rem; object-fit: contain; display: block; }
+  .art-logo { background: #182734; }
+  .art-logo .logo { width: 11rem; max-width: 100%; height: auto; display: block; }
+  .credit { font-size: 0.75rem !important; }
+  .fallback { display: contents; }
   @media (min-width: 860px) {
     .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .card.wide { grid-column: span 2; }
@@ -229,14 +235,15 @@
       <h2>Projects</h2>
       <ul class="cards">
         <li class="card wide">
-          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="22" y="18" width="70" height="40" rx="10" fill="var(--accent)"/><path d="M36 58 l0 14 l14 -14z" fill="var(--accent)"/>
+          <div class="art art-fig"><img class="fig" src="https://arxiv.org/html/2603.08448v3/figures/figure1.png" alt="Study design of the AMIE clinical feasibility study: patient chat with AMIE, then a primary care visit, then evaluation" loading="lazy" onerror="var c=this.closest('.card').querySelector('.credit');if(c)c.hidden=true;this.nextElementSibling.hidden=false;this.parentNode.classList.remove('art-fig');this.remove()"><span class="fallback" hidden><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="22" y="18" width="70" height="40" rx="10" fill="var(--accent)"/><path d="M36 58 l0 14 l14 -14z" fill="var(--accent)"/>
 <rect x="68" y="44" width="70" height="36" rx="10" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><path d="M122 80 l0 12 l-12 -12z" fill="var(--bg)" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>
 <path d="M57 28 v20 M47 38 h20" stroke="var(--bg)" stroke-width="5" stroke-linecap="round"/>
-<circle cx="88" cy="62" r="3.5" fill="var(--accent)"/><circle cx="103" cy="62" r="3.5" fill="var(--accent)"/><circle cx="118" cy="62" r="3.5" fill="var(--accent)"/></svg></div>
+<circle cx="88" cy="62" r="3.5" fill="var(--accent)"/><circle cx="103" cy="62" r="3.5" fill="var(--accent)"/><circle cx="118" cy="62" r="3.5" fill="var(--accent)"/></svg></span></div>
           <div class="card-body">
             <span class="when">2025 – present</span>
             <h3>AMIE: a research AI system for diagnostic medical reasoning and conversations</h3>
             <p>Beth Israel Deaconess Medical Center, with Google Research</p>
+            <p class="credit">Figure: study design, from <a href="https://arxiv.org/abs/2603.08448">Brodeur et al., 2026</a> (CC BY 4.0)</p>
           </div>
         </li>
         <li class="card">
@@ -280,8 +287,7 @@
           </div>
         </li>
         <li class="card wide">
-          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><g stroke="var(--accent)" stroke-width="2.5"><line x1="40" y1="30" x2="80" y2="50"/><line x1="80" y1="50" x2="122" y2="26"/><line x1="80" y1="50" x2="58" y2="80"/><line x1="80" y1="50" x2="118" y2="76"/><line x1="40" y1="30" x2="58" y2="80"/><line x1="122" y1="26" x2="118" y2="76"/></g>
-<circle cx="80" cy="50" r="12" fill="var(--accent)"/><circle cx="40" cy="30" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><circle cx="122" cy="26" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><circle cx="58" cy="80" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><circle cx="118" cy="76" r="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/></svg></div>
+          <div class="art art-logo"><img class="logo" src="galenos-logo.png" alt="GALENOS logo" width="198" height="122"></div>
           <div class="card-body">
             <span class="when">2024 – 2025</span>
             <h3>GALENOS living evidence on anxiety, depression and psychosis</h3>
