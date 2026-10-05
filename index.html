@@ -71,6 +71,8 @@
     margin: 0; font: 500 1.6rem/1.2 var(--display); letter-spacing: -0.01em;
     display: flex; align-items: baseline; gap: 1rem;
   }
+  .sub { margin: 2rem 0 0.75rem; font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  h2 + .sub { margin-top: 0; }
   h2::after { content: ""; flex: 1; border-bottom: 1px solid var(--line); transform: translateY(-0.3em); }
   p { margin: 0; max-width: 66ch; }
   .lede { font: 400 1.25rem/1.5 var(--display); max-width: 48ch; text-wrap: pretty; }
@@ -157,10 +159,8 @@
     <a class="brand" href="#about">Ava Homiar</a>
     <nav aria-label="Pages" id="tabs">
       <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
+      <a href="#experience">Experience &amp; education</a>
       <a href="#projects">Projects</a>
-      <a href="#preprints">Preprints</a>
       <a href="#publications">Publications</a>
       <a href="#talks">Talks</a>
       <a href="#contact">Contact</a>
@@ -203,7 +203,8 @@
     </section>
 
     <section id="experience">
-      <h2>Experience</h2>
+      <h2>Experience &amp; education</h2>
+      <h3 class="sub">Experience</h3>
       <ul class="entries">
         <li class="entry">
           <span class="when">2025 – present</span>
@@ -214,10 +215,7 @@
           <h3>Research Assistant II <span class="where">Division of Clinical Informatics, BIDMC and Harvard Medical Faculty Physicians</span></h3>
         </li>
       </ul>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
+      <h3 class="sub" id="education">Education</h3>
       <ul class="entries">
         <li class="entry">
           <span class="when">2026 – 2028</span>
@@ -303,8 +301,9 @@
       </ul>
     </section>
 
-    <section id="preprints">
-      <h2>Preprints</h2>
+    <section id="publications">
+      <h2>Publications</h2>
+      <h3 class="sub" id="preprints">Preprints</h3>
       <ol class="pubs">
         <li><div class="cite">
           <span class="title">A prospective clinical feasibility study of a conversational diagnostic AI in an ambulatory primary care clinic</span>
@@ -317,10 +316,7 @@
           <div class="pub-meta"><a href="https://doi.org/10.2196/preprints.83637">DOI</a></div>
         </div></li>
       </ol>
-    </section>
-
-    <section id="publications">
-      <h2>Publications</h2>
+      <h3 class="sub">Papers</h3>
       <ol class="pubs">
         <li><div class="cite">
           <span class="title">Automatically detecting trends and open questions from mental health publications: a Wellcome-funded GALENOS project</span>
@@ -391,7 +387,9 @@
     var sections = Array.prototype.slice.call(document.querySelectorAll("main > section"));
     var links = Array.prototype.slice.call(document.querySelectorAll("#tabs a"));
     var ids = sections.map(function (s) { return s.id; });
+    var alias = { education: "experience", preprints: "publications" };
     function show(id, scroll) {
+      if (alias[id]) id = alias[id];
       if (ids.indexOf(id) < 0) id = "about";
       sections.forEach(function (s) { if (s.id === id) s.removeAttribute("data-hidden"); else s.setAttribute("data-hidden", ""); });
       links.forEach(function (a) { if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
@@ -401,6 +399,7 @@
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener("click", function (e) {
         var id = a.getAttribute("href").slice(1);
+        if (alias[id]) id = alias[id];
         if (ids.indexOf(id) < 0) return;
         e.preventDefault();
         show(id, true);
