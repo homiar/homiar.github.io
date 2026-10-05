@@ -97,6 +97,8 @@
   .art svg { width: 100%; max-width: 13rem; height: auto; display: block; }
   .card-body { padding: 1rem 1.1rem 1.2rem; display: grid; gap: 0.3rem; align-content: start; }
   .card h3 { margin: 0; font: 600 1rem/1.4 var(--body); }
+  .subs { margin: 0.35rem 0 0; padding-left: 1.1rem; font-size: 0.875rem; color: var(--ink); display: grid; gap: 0.25rem; }
+  .subs li::marker { color: var(--accent); }
   .card p { margin: 0; font-size: 0.875rem; color: var(--muted); }
   .art-fig { background: #ffffff; padding: 0.75rem; }
   .art-fig .fig { width: 100%; height: auto; max-height: 15rem; object-fit: contain; display: block; }
@@ -263,37 +265,27 @@
 <path d="M14 54 h44 l8 -20 l10 38 l9 -28 l6 10 h55" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
           <div class="card-body">
             <span class="when">2025 – present</span>
-            <h3>Remote patient monitoring for people with cancer</h3>
-            <p>Evaluation of the Vitalera platform, Beth Israel Deaconess Medical Center</p>
-          </div>
-        </li>
-        <li class="card">
-          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="26" y="14" width="108" height="64" rx="8" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/><rect x="68" y="78" width="24" height="10" fill="var(--accent)"/><rect x="54" y="88" width="52" height="4" rx="2" fill="var(--accent)"/>
-<circle cx="80" cy="38" r="11" fill="var(--accent)"/><path d="M58 72 a22 18 0 0 1 44 0z" fill="var(--accent)"/>
-<circle cx="122" cy="24" r="4" fill="var(--accent)"/></svg></div>
-          <div class="card-body">
-            <span class="when">2025 – present</span>
-            <h3>Telehealth programs for traumatic brain injury</h3>
-            <p>Beth Israel Deaconess Medical Center, with Veterans Affairs</p>
-          </div>
-        </li>
-        <li class="card">
-          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="18" y="22" width="40" height="52" rx="5" fill="var(--bg)" stroke="var(--line)" stroke-width="3"/><rect x="26" y="16" width="40" height="52" rx="5" fill="var(--bg)" stroke="var(--accent)" stroke-width="3"/>
-<path d="M34 30 h24 M34 40 h24 M34 50 h16" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
-<path d="M78 26 h34 l-12 18 v18 l-10 6 v-24z" fill="var(--accent)"/>
-<circle cx="130" cy="62" r="14" fill="var(--accent)"/><path d="M123 62 l5 5 l9 -10" fill="none" stroke="var(--bg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="card-body">
-            <span class="when">2024 – 2025</span>
-            <h3>Large language models for living systematic reviews</h3>
-            <p>Prompt engineering for screening and risk of bias, GALENOS, University of Oxford</p>
+            <h3>Digital care programs</h3>
+            <p>Beth Israel Deaconess Medical Center</p>
+            <ul class="subs">
+              <li>Remote patient monitoring for people with cancer, with Vitalera</li>
+              <li>Telehealth programs for traumatic brain injury, with Veterans Affairs</li>
+            </ul>
           </div>
         </li>
         <li class="card wide">
           <div class="art art-logo"><img class="logo" src="galenos-logo.png" alt="GALENOS logo" width="198" height="122"></div>
           <div class="card-body">
             <span class="when">2024 – 2025</span>
-            <h3>GALENOS living evidence on anxiety, depression and psychosis</h3>
+            <h3>GALENOS: living evidence on anxiety, depression and psychosis</h3>
             <p>Oxford Precision Psychiatry Lab, University of Oxford</p>
+            <ul class="subs">
+              <li>Large language model prompts for screening and risk of bias</li>
+              <li>Automating data extraction with GPT-4o and o3</li>
+              <li>Text mining the biomedical literature for research trends</li>
+              <li>Living systematic review: cognitive bias modification for social anxiety</li>
+              <li>Living systematic review: TAAR1 agonism for psychosis</li>
+            </ul>
           </div>
         </li>
         <li class="card">
@@ -302,8 +294,26 @@
 <path d="M64 52 h9 l4 -10 l6 18 l4 -8 h9" fill="none" stroke="var(--bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="card-body">
             <span class="when">2022 – 2023</span>
-            <h3>Digital technology use in people with schizophrenia</h3>
+            <h3>Schizophrenia research</h3>
             <p>St. Joseph's Healthcare Hamilton</p>
+            <ul class="subs">
+              <li>Digital technology use in people with schizophrenia</li>
+              <li>Integrated Neurocognitive Therapy and recovery</li>
+            </ul>
+          </div>
+        </li>
+        <li class="card wide">
+          <div class="art"><svg viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect x="20" y="40" width="88" height="22" rx="11" fill="var(--line)"/><rect x="46" y="32" width="36" height="38" rx="9" fill="var(--accent)"/><path d="M53 52 h6 l3 -7 l5 13 l3 -6 h5" fill="none" stroke="var(--bg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M114 38 a14 14 0 0 1 0 26" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><path d="M122 34 a22 22 0 0 1 0 34" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><path d="M130 30 a30 30 0 0 1 0 42" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+          <div class="card-body">
+            <span class="when">2022</span>
+            <h3>Digital mental health</h3>
+            <p>Krembil Centre for Neuroinformatics, Centre for Addiction and Mental Health (CAMH)</p>
+            <ul class="subs">
+              <li>Google searches in the early detection of suicidal behaviours</li>
+              <li>Brighten: technology, emotion and neuroscience</li>
+              <li>Biomarkers in the MDD Integrated Care Pathway</li>
+              <li>Wearables in the Cognitive Dysfunctions in Addictions (CDiA) study</li>
+            </ul>
           </div>
         </li>
       </ul>
